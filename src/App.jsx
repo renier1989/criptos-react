@@ -1,8 +1,15 @@
+import styled from "@emotion/styled";
+
+const Heading = styled.h1`
+  font-family: 'Lato' , sans-serif;
+  color: #FFFFFF;
+`;
+
 function App() {
   return (
-    <>
-      <h1> mi pagina de criptomonedas</h1>
-    </>
+    <div>
+      <Heading> mi pagina de criptomonedas</Heading>
+    </div>
   );
 }
 
