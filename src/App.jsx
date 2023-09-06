@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import ImageCrypto from "./img/imagen-criptos.png";
+import Form from "./components/Form";
 
 const Image = styled.img`
   max-width: 400px;
@@ -44,6 +45,7 @@ function App() {
       <Image src={ImageCrypto} alt="ImageCryto" />
       <div>
         <Heading> Quote your cryptocurrencies instantly</Heading>
+        <Form />
       </div>
     </Container>
   );
