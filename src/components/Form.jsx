@@ -23,10 +23,11 @@ margin-top: 20px;
 
 const Form = () => {
   
-    const [SelectCurrency] = useSelectCurrency('Select your Currency',coins );
+    const [coin,SelectCurrency] = useSelectCurrency('Select your Currency',coins );
 
   return <form>
     <SelectCurrency />
+    {coin}
     <InputSubmit type="submit" value="Quote" />
     </form>;
 };

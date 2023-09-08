@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useState } from "react";
 
 const Label = styled.label`
 color: #FFF;
@@ -18,10 +19,14 @@ const Select = styled.select`
 `;
 
 const useSelectCurrency = (label, options) => {
+  const [state, setState] = useState('');
   const SelectCurrency = () => (
     <>
       <Label>{label}</Label>
-      <Select >
+      <Select 
+      value={state}
+      onChange={e=> setState(e.target.value)}
+      >
         <option value="">..Select..</option>
         {options.map(option => (
           <option key={option.id} value={option.id} >{option.name}</option>
@@ -30,7 +35,7 @@ const useSelectCurrency = (label, options) => {
     </>
   );
 
-  return [SelectCurrency];
+  return [state ,SelectCurrency];
 };
 
 export default useSelectCurrency;
