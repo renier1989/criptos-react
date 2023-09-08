@@ -42,9 +42,22 @@ const Image = styled.img`
 
 function App() {
   const [currencies, setCurrencies] = useState({})
+  const [quote, setQuote] = useState({})
   useEffect(() => {
       if(Object.keys(currencies).length > 0){
-        console.log(currencies);
+        const qouteCrypto = async () =>{
+          // console.log(currencies);
+          const {coin, cryptoCurrency} = currencies;
+          const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cryptoCurrency}&tsyms=${coin}`;
+          const  res = await fetch(url);
+          const result = await res.json();
+          // console.log(result.DISPLAY[cryptoCurrency][coin]);
+          setQuote(result.DISPLAY[cryptoCurrency][coin]);
+
+        } 
+
+        qouteCrypto();
+
       }
   }, [currencies]);
   return (

@@ -61,6 +61,7 @@ const Form = ({setCurrencies}) => {
 
     if ([coin, cryptoCurrency].includes("")) {
       setError(true);
+      return;
     }
     // console.log(coin, cryptoCurrency);
     setError(false);
