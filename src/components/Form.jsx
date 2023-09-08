@@ -25,6 +25,7 @@ margin-top: 20px;
 const Form = () => {
     const [cryptos ,setCryptos] = useState([]);
     const [coin,SelectCurrency] = useSelectCurrency('Select your Currency',coins );
+    const [cryptoCurrency,SelectCryptoCurrency] = useSelectCurrency('Select your Crypto',cryptos);
 
     useEffect(()=>{
       const getCryptos = async()=>{
@@ -50,7 +51,7 @@ const Form = () => {
 
   return <form>
     <SelectCurrency />
-    {coin}
+    <SelectCryptoCurrency />
     <InputSubmit type="submit" value="Quote" />
     </form>;
 };
