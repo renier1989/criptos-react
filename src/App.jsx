@@ -1,15 +1,36 @@
 import styled from "@emotion/styled";
-import ImgCryto from "./img/imagen-criptos.png"
+import ImageCrypto from "./img/imagen-criptos.png";
+import Form from "./components/Form";
+import { useEffect, useState } from "react";
 
 const Container = styled.div`
   max-width: 900px;
   margin: 0 auto;
   width: 90%;
+  @media (min-width: 992px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    columns-gap: 2rem;
+  }
 `;
 
 const Heading = styled.h1`
-  font-family: 'Lato' , sans-serif;
-  color: #FFFFFF;
+  font-family: "Lato", sans-serif;
+  color: #ffffff;
+  text-align: center;
+  font-weight: 700;
+  margin-top: 80px;
+  margin-bottom: 50px;
+  font-size: 34px;
+
+  &::after{
+    content: '';
+    width:100px;
+    height: 6px;
+    background-color: #66A2FE;
+    display: block;
+    margin: 10px auto 0 auto;
+  }
 `;
 
 const Image = styled.img`
@@ -20,9 +41,21 @@ const Image = styled.img`
 `;
 
 function App() {
+  const [currencies, setCurrencies] = useState({})
+  useEffect(() => {
+      if(Object.keys(currencies).length > 0){
+        console.log(currencies);
+      }
+  }, [currencies]);
   return (
     <Container>
-      <Heading> mi pagina de criptomonedas</Heading>
+      <Image src={ImageCrypto} alt="ImageCryto" />
+      <div>
+        <Heading> Quote your cryptocurrencies instantly</Heading>
+        <Form 
+          setCurrencies={setCurrencies}
+        />
+      </div>
     </Container>
   );
 }
