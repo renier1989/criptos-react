@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import ImageCrypto from "./img/imagen-criptos.png";
 import Form from "./components/Form";
 import { useEffect, useState } from "react";
+import Results from "./components/Results";
 
 const Container = styled.div`
   max-width: 900px;
@@ -68,6 +69,8 @@ function App() {
         <Form 
           setCurrencies={setCurrencies}
         />
+        {quote.PRICE && <Results quote={quote} />}
+        
       </div>
     </Container>
   );
