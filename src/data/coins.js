@@ -1,8 +1,8 @@
 const coins = [
     {id: 'USD', name:'Dollar USA'},
     {id: 'EUR', name:'Euro'},
-    {id: 'GBP', name:'Esterline'},
-    {id: 'PEN', name:'Perubian Coin'},
+    {id: 'GBP', name:'pound sterling'},
+    {id: 'PEN', name:'peruvian sol'},
   ]
 
   export {
