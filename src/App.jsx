@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import ImageCrypto from "./img/imagen-criptos.png";
 import Form from "./components/Form";
+import { useEffect, useState } from "react";
 
 const Image = styled.img`
   max-width: 400px;
@@ -40,12 +41,20 @@ const Heading = styled.h1`
 `;
 
 function App() {
+  const [currencies, setCurrencies] = useState({})
+  useEffect(() => {
+      if(Object.keys(currencies).length > 0){
+        console.log(currencies);
+      }
+  }, [currencies]);
   return (
     <Container>
       <Image src={ImageCrypto} alt="ImageCryto" />
       <div>
         <Heading> Quote your cryptocurrencies instantly</Heading>
-        <Form />
+        <Form 
+          setCurrencies={setCurrencies}
+        />
       </div>
     </Container>
   );
