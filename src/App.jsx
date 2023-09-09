@@ -2,13 +2,8 @@ import styled from "@emotion/styled";
 import ImageCrypto from "./img/imagen-criptos.png";
 import Form from "./components/Form";
 import { useEffect, useState } from "react";
-
-const Image = styled.img`
-  max-width: 400px;
-  width: 80%;
-  margin: 100px auto 0 auto;
-  display: block;
-`;
+import Results from "./components/Results";
+import Loading from "./components/Loading";
 
 const Container = styled.div`
   max-width: 900px;
@@ -30,31 +25,56 @@ const Heading = styled.h1`
   margin-bottom: 50px;
   font-size: 34px;
 
-  &::after{
-    content: '';
-    width:100px;
+  &::after {
+    content: "";
+    width: 100px;
     height: 6px;
-    background-color: #66A2FE;
+    background-color: #66a2fe;
     display: block;
     margin: 10px auto 0 auto;
   }
 `;
 
+const Image = styled.img`
+  max-width: 400px;
+  width: 80%;
+  margin: 100px auto 0 auto;
+  display: block;
+`;
+
 function App() {
-  const [currencies, setCurrencies] = useState({})
+  const [currencies, setCurrencies] = useState({});
+  const [quote, setQuote] = useState({});
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-      if(Object.keys(currencies).length > 0){
-        console.log(currencies);
-      }
+    if (Object.keys(currencies).length > 0) {
+      const qouteCrypto = async () => {
+        setLoading(true);
+        setQuote({});
+
+        // console.log(currencies);
+        const { coin, cryptoCurrency } = currencies;
+        const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cryptoCurrency}&tsyms=${coin}`;
+        const res = await fetch(url);
+        const result = await res.json();
+        // console.log(result.DISPLAY[cryptoCurrency][coin]);
+        setQuote(result.DISPLAY[cryptoCurrency][coin]);
+        setLoading(false);
+      };
+
+      qouteCrypto();
+    }
   }, [currencies]);
+
   return (
     <Container>
       <Image src={ImageCrypto} alt="ImageCryto" />
+
       <div>
         <Heading> Quote your cryptocurrencies instantly</Heading>
-        <Form 
-          setCurrencies={setCurrencies}
-        />
+        <Form setCurrencies={setCurrencies} />
+        {loading && <Loading />}
+        {quote.PRICE && <Results quote={quote} />}
       </div>
     </Container>
   );

@@ -38,7 +38,7 @@ const Form = ({setCurrencies}) => {
   useEffect(() => {
     const getCryptos = async () => {
       const url =
-        "https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD";
+        "https://min-api.cryptocompare.com/data/top/mktcapfull?limit=20&tsym=USD";
       const resp = await fetch(url);
       const result = await resp.json();
 
@@ -61,6 +61,7 @@ const Form = ({setCurrencies}) => {
 
     if ([coin, cryptoCurrency].includes("")) {
       setError(true);
+      return;
     }
     // console.log(coin, cryptoCurrency);
     setError(false);
